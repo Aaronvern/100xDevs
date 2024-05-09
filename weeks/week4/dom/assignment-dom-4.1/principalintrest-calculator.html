@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+principal inerest calculator <br>
+<head>
+    <title>
+        principal interest calculator
+    </title>
+</head>
+<script>
+    function fun(){
+        const principal = document.getElementById("principal").value
+        const rate = document.getElementById("rate").value
+        const time = document.getElementById("time").value
+        fetch("https://sum-server.100xdevs.com/interest?principal="+principal+"&rate="+rate+"&time="+time)
+        .then((response)=>{
+            response.json().then((ans)=>{
+                const output = document.getElementById("output")
+                output.innerHTML= "total= "+ parseInt(ans.total)+"<br>interest="+ parseInt(ans.interest)
+                console.log(ans.total)
+                console.log(ans.interest)
+            })
+        })
+    }
+</script>
+<body>
+    <input type="text" placeholder="enter principal amount " id="principal"></input><br></br>
+    <input type="text" placeholder="enter rate of interest" id="rate"></input><br></br>
+    <input type="text" placeholder="enter time in months" id="time"></input><br></br>
+    <button onclick="fun()">principal interest</button><br></br>
+    <div id="output"></div>
+</body>

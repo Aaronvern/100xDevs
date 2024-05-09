@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<head>
+    <title>
+        TODOs APP
+    </title>
+</head>
+<body>
+    <input type="text" placeholder="todo title" id="title"></input><br>
+    <input type="text" placeholder="todo description" id="description"></input><br>
+    <b>TODOs</b><br>
+    <div id="todos"></div>
+</body>
+<script>
+    
+    let id = 0 ;
+    function addChild(title,description,id){
+        const titleChild = document.createElement("div")
+        titleChild.innerHTML = title
+        
+        const desChild = document.createElement("div")
+        desChild.innerHTML = description
+
+        const butChild = document.createElement("button")
+        butChild.innerHTML = "mark as done!"
+        butChild.setAttribute("onclick",`taskIsDone(${id})`)
+
+        const childDiv = document.createElement("div")
+        childDiv.appendChild(titleChild)
+        childDiv.appendChild(desChild)
+        childDiv.appendChild(butChild)
+        childDiv.setAttribute("id",id)
+        return childDiv;
+    }
+    async function updateAccordingToState(state){
+        const parent = document.getElementById("todos")
+        parent.innerHTML = ""
+        for(i=0 ; i<state.length;i++){
+            let child = addChild(state[i].title,state[i].description,id++)
+            parent.appendChild(child)
+
+        }
+        
+    }
+
+    window.setInterval(()=>{
+        fetch("https://sum-server.100xdevs.com/todos")
+        .then((response)=>{
+            response.json().then((res)=>{
+                updateAccordingToState(res.todos)
+            })
+        })
+    },3000)
+
+</script>

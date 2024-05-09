@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<head>
+    <title>
+        todo app
+    </title>
+</head>
+<script>
+    function addTodo(){
+        const title = document.getElementById("title").value
+        const description = document.getElementById("description").value
+        const outerDiv = document.createElement("div")
+        outerDiv.innerHTML = 
+        `<div>${title}<div><br>
+        <div>${description}<div><br>
+        <button>todo completed</button>`
+        document.getElementById("todos").appendChild(outerDiv)
+    }
+</script>
+<body>
+    <input type="text" placeholder="todo title" id="title"></input><br>
+    <input type="text" placeholder="todo description" id="description"></input><br>
+    <button onclick="addTodo()">add todo</button><br>
+    <b>TODOs</b><br>
+    <div id="todos"></div>
+</body>

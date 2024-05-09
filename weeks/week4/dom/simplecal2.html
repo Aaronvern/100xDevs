@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<head>
+    <title>simplecal2</title>
+</head>
+<script>
+    function cons(){
+        const first = document.getElementById("first").value;   
+        const second = document.getElementById("second").value;
+        console.log(first)
+        console.log(second)
+        fetch("https://sum-server.100xdevs.com/sum?a="+first+"&b="+second)
+        .then((response)=>{
+            response.text().then((ans)=>{
+                const res = document.getElementById("finalsum")
+                res.innerHTML = "sum = "+ans
+            })
+        })
+    }
+</script>
+<body>
+    <input type="text"   placeholder="enter first element" id="first" ></input><br></br>
+    <input   type="text" placeholder="enter second element" id="second" ></input><br></br>
+    <button onclick="cons()">enter for sum</button>
+    <div id="finalsum"></div>
+</body>

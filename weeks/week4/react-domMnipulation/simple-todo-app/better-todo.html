@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<head>
+    <title>
+        TODOs APP
+    </title>
+</head>
+<script>
+    let id = 0 ;
+    function taskIsDone(todoId){
+        const Child = document.getElementById(todoId)
+        Child.children[2].innerHTML = "done!"
+        console.log("hi")
+    }
+    function addChild(title,description,id){
+        const titleChild = document.createElement("div")
+        titleChild.innerHTML = title
+        
+        const desChild = document.createElement("div")
+        desChild.innerHTML = description
+
+        const butChild = document.createElement("button")
+        butChild.innerHTML = "mark as done!"
+        butChild.setAttribute("onclick",`taskIsDone(${id})`)
+
+        const childDiv = document.createElement("div")
+        childDiv.appendChild(titleChild)
+        childDiv.appendChild(desChild)
+        childDiv.appendChild(butChild)
+        childDiv.setAttribute("id",id)
+        return childDiv;
+    }
+    function addTodo(){
+        
+        const title = document.getElementById("title").value
+        const description = document.getElementById("description").value
+        const div = document.getElementById("todos")
+
+        div.appendChild(addChild(title,description,id++))
+    }
+
+</script>
+<body>
+    <input type="text" placeholder="todo title" id="title"></input><br>
+    <input type="text" placeholder="todo description" id="description"></input><br>
+    <button onclick="addTodo()" id="todoId">add todo</button><br>
+    <b>TODOs</b><br>
+    <div id="todos"></div>
+</body>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<head>
+    <title>simple cal   </title>
+</head>
+<script>
+    function popdiv(){
+        const first= document.getElementById("first").value
+        const second= document.getElementById("second").value
+        const res = document.getElementById("finalsum")
+        let sum =parseFloat(first)+parseFloat(second); 
+        res.innerHTML=sum
+        console.log(first)
+        console.log(second)
+        console.log(sum)
+    }
+</script>
+<body>
+    <input type="text" placeholder="enter 1st number" id="first"></input><br></br>
+    <input type="text" placeholder="enter 2st number" id="second"></input><br></br>
+    <button onclick="popdiv() ">sum</button>
+    <div id="finalsum"></div>
+</body>

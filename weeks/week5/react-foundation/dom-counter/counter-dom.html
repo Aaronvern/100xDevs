@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<head>
+    <title>COUNTER</title>
+</head>
+<body>
+    <div id="button"></div>
+</body>
+<script>
+    let buttonState ={
+        count:0
+    }
+    function changerOnClick(){
+        buttonState.count++;
+        rerenderButton();
+    }
+    function rerenderButton(){
+        const buttonDiv = document.getElementById("button").innerHTML = ""
+        const childDiv = document.createElement("button")
+        childDiv.innerHTML = `counter ${buttonState.count}`
+        childDiv.setAttribute("onclick",`changerOnClick()`)
+        document.getElementById("button").appendChild(childDiv)
+    }
+    rerenderButton()
+</script>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+principal interest calculator <br>
+<head>
+    <title>
+        principal interest calculator
+        
+    </title>
+</head>
+<script>
+    let call;
+    function debouncefun(){
+        clearTimeout(call)
+        call= setTimeout(()=>{
+            fun();
+        },3000)
+    }
+    function fun(){
+        const principal = document.getElementById("principal").value
+        const rate = document.getElementById("rate").value
+        const time = document.getElementById("time").value
+        fetch("http://localhost:3000/simpleinterest?principal="+principal+"&rate="+rate+"&time="+time)
+        .then((response)=>{
+            response.json().then((ans)=>{
+                const output = document.getElementById("output")
+                output.innerHTML= "total= "+ parseInt(ans.total)+"<br>interest="+ parseInt(ans.interest)
+                console.log(ans.total)
+                console.log(ans.interest)
+            })
+        })
+    }
+</script>
+<body>
+    principal amount=<input oninput="debouncefun()" type="text" placeholder="enter principal amount " id="principal"></input><br></br>
+    rate of interest= <input oninput="debouncefun()" type="text" placeholder="enter rate of interest" id="rate"></input><br></br>
+    time= <input oninput="debouncefun()" type="text" placeholder="enter time in months" id="time"></input><br></br>
+    <div id="output"></div>
+</body>
