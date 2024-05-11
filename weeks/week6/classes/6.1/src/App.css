@@ -1,0 +1,60 @@
+import React, { useState, useEffect } from 'react';
+import './App.css';
+import Todo from './components/Todo';
+import TodoFetcher from './components/TodoFetcher';
+
+function App() {
+  // Use state to manage todos fetched from the API
+  const [todos, setTodos] = useState([]);
+  // Track loading and error states for better UI feedback
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  // Fetch todos on component mount using useEffect
+  useEffect(() => {
+    const fetchData = async () => {
+      setIsLoading(true);
+      setError(null); // Clear previous errors before fetching
+
+      try {
+        const response = await fetch('https://sum-server.100xdevs.com/todos');
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const fetchedTodos = await response.json();
+        setTodos(fetchedTodos);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []); // Empty dependency array ensures fetching only once
+
+  // Handle potential errors and loading state in the render function
+  return (
+    <div className="App">
+      {isLoading && <p>Loading todos...</p>}
+      {error && <p>Error fetching todos: {error}</p>}
+      {!isLoading && !error && todos.length > 0 && (
+        <ul>
+          {todos.map((todo) => (
+            <Todo key={todo.id || todo.title} title={todo.title} desc={todo.description} />
+          ))}
+        </ul>
+      )}
+      {!isLoading && !error && todos.length === 0 && <p>No todos found.</p>}
+      {/* Commented-out local todo state and addTodo function */}
+      {/*
+        <button onClick={addTodo}>ADD TODO</button>
+        {todo.map((todo) => (
+          <Todo title={todo.title} desc={todo.desc}></Todo>
+        ))}
+      */}
+    </div>
+  );
+}
+
+export default App;
