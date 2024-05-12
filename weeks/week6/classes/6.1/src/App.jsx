@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '../src/index.css'
 import Todo from './components/Todo';
+import axios from 'axios'
 
 function App() {
   const [todos, setTodos] = useState([]);
@@ -12,7 +13,7 @@ function App() {
     setError(null);
 
     try {
-      const response = await fetch('https://sum-server.100xdevs.com/todos');
+      const response = await axios.get('https://sum-server.100xdevs.com/todos');
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
