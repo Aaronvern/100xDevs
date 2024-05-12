@@ -14,10 +14,9 @@ function App() {
 
     try {
       const response = await axios.get('https://sum-server.100xdevs.com/todos');
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      const { todos } = await response.json();
+      
+      const { todos } = response.data;
+      console.log(todos)
       setTodos(todos);
     } catch (err) {
       setError(err.message);
