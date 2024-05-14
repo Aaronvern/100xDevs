@@ -1,15 +1,14 @@
 import { useState } from 'react'
 import { BrowserRouter, Route, Router, Routes, useNavigate } from 'react-router-dom'
 import './App.css'
-import DashBoard from './components/DashBoard'
-import Landing from './components/Landing'
-import Header from './components/Header'
+const DashBoard = lazy(()=> import ('./components/DashBoard'))
+const Landing = lazy(()=> import ('./components/Landing'))
+import {lazy} from 'react'
 
 function App() {
   const [count, setCount] = useState(0)
   
   return (
-
     <>
       
       <BrowserRouter>
