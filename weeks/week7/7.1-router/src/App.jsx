@@ -1,9 +1,10 @@
 import { useState } from 'react'
 import { BrowserRouter, Route, Router, Routes, useNavigate } from 'react-router-dom'
 import './App.css'
+import {lazy , Suspense} from 'react'
 const DashBoard = lazy(()=> import ('./components/DashBoard'))
 const Landing = lazy(()=> import ('./components/Landing'))
-import {lazy} from 'react'
+
 
 function App() {
   const [count, setCount] = useState(0)
@@ -14,8 +15,8 @@ function App() {
       <BrowserRouter>
         <Topbar/>
         <Routes>
-            <Route path = "/dashboard" element={<DashBoard/>} />
-            <Route path = "/" element={<Landing/>}  />
+            <Route path = "/dashboard" element={<Suspense fallback={"loading "}><DashBoard/></Suspense>} />
+            <Route path = "/" element={<Suspense fallback={"loading "}><Landing/></Suspense>}  />
         </Routes>
       </BrowserRouter>
     </>
