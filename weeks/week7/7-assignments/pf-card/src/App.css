@@ -1,0 +1,38 @@
+.App {
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* Align items at the top */
+  height: 100vh; /* Full viewport height */
+  padding-top: 20px; /* Add some padding at the top */
+}
+
+.container {
+  text-align: center;
+}
+
+label {
+  font-size: 1.2em;
+  margin-right: 10px;
+}
+
+input {
+  font-size: 1em;
+  padding: 5px;
+  margin-right: 10px;
+}
+
+button {
+  font-size: 1em;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+p {
+  font-size: 1.2em;
+  margin-top: 20px;
+  max-width: 600px;
+  text-align: justify;
+  margin-left: auto;
+  margin-right: auto;
+}
